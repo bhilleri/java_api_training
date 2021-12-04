@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * Classe contenant le Main
  */
-public class Launcher {
+public final class Launcher {
     /**
      * Point d'entrée dans le programme
      */

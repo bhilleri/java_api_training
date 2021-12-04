@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Contient la liste des web-services chargés par le projet
  */
-public class ListServices {
+public final class ListServices {
     final private Map<String, IService> listService;
 
     /**

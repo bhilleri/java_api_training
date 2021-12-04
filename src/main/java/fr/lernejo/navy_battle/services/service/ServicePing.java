@@ -9,7 +9,7 @@ import java.io.OutputStream;
 /**
  * Web-service permettant de répondre Hello à un client
  */
-public class ServicePing implements IService {
+public final class ServicePing implements IService {
     @Override
     public void handler(HttpExchange exchange) throws IOException {
         String body = getBody();

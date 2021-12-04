@@ -13,7 +13,7 @@ import fr.lernejo.navy_battle.services.ListServices;
 /**
  * Serveur Http de l'application permettant la communication avec l'autre joueur
  */
-public class ServerNavyBattleHttp implements IServerNavyBattle {
+public final class ServerNavyBattleHttp implements IServerNavyBattle {
     private HttpServer server;
 
     @Override
