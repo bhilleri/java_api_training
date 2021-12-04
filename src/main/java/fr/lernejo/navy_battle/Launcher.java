@@ -1,5 +1,10 @@
 package fr.lernejo.navy_battle;
 
+import fr.lernejo.navy_battle.server.IServerNavyBattle;
+import fr.lernejo.navy_battle.server.ServerNavyBattleHttp;
+
+import java.io.IOException;
+
 /**
  * Classe contenant le Main
  */
@@ -9,6 +14,12 @@ public class Launcher {
      */
     public static void main(String [] args)
     {
-        Launcher launcher =new Launcher();
+        IServerNavyBattle server= new ServerNavyBattleHttp();
+        try {
+            server.configureServer(22222);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        server.startServer();
     }
 }
