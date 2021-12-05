@@ -1,7 +1,9 @@
 package fr.lernejo.navy_battle.services;
 
 import fr.lernejo.navy_battle.services.service.ServicePing;
+import fr.lernejo.navy_battle.services.service.ServiceStart;
 
+import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +19,7 @@ public final class ListServices {
     public ListServices(){
         this.listService = new HashMap<>();
         this.listService.put("/ping", new ServicePing());
+        this.listService.put("/api/game/start", new ServiceStart());
     }
 
     /**

@@ -3,6 +3,8 @@ package fr.lernejo.navy_battle.services;
 import fr.lernejo.navy_battle.services.service.ServicePing;
 import org.junit.jupiter.api.Assertions;
 
+import java.net.InetSocketAddress;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ListServicesTest {

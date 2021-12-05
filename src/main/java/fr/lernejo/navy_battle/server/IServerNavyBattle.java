@@ -2,21 +2,21 @@ package fr.lernejo.navy_battle.server;
 
 import com.sun.net.httpserver.HttpServer;
 
-import java.io.IOException;
+import java.net.InetSocketAddress;
 
 /**
  * Interface du serveur permettant la communication avec l'autre joueur
  */
 public interface IServerNavyBattle  {
-    /**
-     * Initialise la configuration du service
-     * @param port numéro du port
-     * @throws IOException
-     */
-    public void configureServer(int port) throws IOException;
 
     /**
      * Démarre le serveur
      */
     public void startServer();
+
+    /**
+     *
+     * @return L'adresse du serveur
+     */
+    public InetSocketAddress getAdress();
 }
