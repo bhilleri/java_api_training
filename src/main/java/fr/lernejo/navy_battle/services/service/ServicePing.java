@@ -9,6 +9,7 @@ import java.io.OutputStream;
  * Web-service permettant de répondre Hello à un client
  */
 public final class ServicePing implements IService {
+    public final String returnValue = "OK";
     @Override
     public void handler(final HttpExchange exchange) throws IOException {
         final String body = getBody();
@@ -18,6 +19,6 @@ public final class ServicePing implements IService {
         }
     }
     public String getBody(){
-        return "OK";
+        return returnValue;
     }
 }

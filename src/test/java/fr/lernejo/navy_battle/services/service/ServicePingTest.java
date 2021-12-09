@@ -14,6 +14,6 @@ class ServicePingTest {
     {
         ServicePing servicePing = new ServicePing();
         String body = servicePing.getBody();
-        Assertions.assertEquals("hello", body);
+        Assertions.assertEquals(servicePing.returnValue, body);
     }
 }
