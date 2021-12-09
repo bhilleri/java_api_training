@@ -5,7 +5,7 @@ import com.sun.net.httpserver.HttpExchange;
 import fr.lernejo.navy_battle.services.IService;
 import fr.lernejo.navy_battle.services.json_properties.StartJsonProperty;
 import fr.lernejo.navy_battle.services.json_properties.StartJsonSchema;
-import fr.lernejo.navy_battle.services.tools.DeserializationStartJsonSchema;
+import fr.lernejo.navy_battle.services.tools.DeserializationStartJsonProperty;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetAddress;
@@ -44,11 +44,11 @@ public class ServiceStart implements IService {
      */
     public String getBody(String port) throws UnknownHostException {
         final Gson gson = new Gson();
-        final StartJsonSchema startJsonSchema = new StartJsonSchema( new StartJsonProperty(
+        final StartJsonProperty startJsonProperty = new StartJsonProperty(
             "2",
             "http://" + InetAddress.getLocalHost().getHostAddress() + ":" + port,
-            "Bonjour"));
-        return gson.toJson(startJsonSchema);
+            "Bonjour");
+        return gson.toJson(startJsonProperty);
     }
 
     /**
@@ -58,9 +58,9 @@ public class ServiceStart implements IService {
      */
     public boolean TestRequest(final HttpExchange exchange){
         try{
-            DeserializationStartJsonSchema deserialization= new DeserializationStartJsonSchema();
-            StartJsonSchema request = deserialization.deserialization(exchange.getRequestBody());
-            return request.isCorrect() && exchange.getRequestMethod().equals("POST");
+            DeserializationStartJsonProperty deserialization= new DeserializationStartJsonProperty();
+            StartJsonProperty request = deserialization.deserialization(exchange.getRequestBody());
+            return exchange.getRequestMethod().equals("POST");
         }
         catch (com.google.gson.JsonSyntaxException | IOException| NullPointerException e)
         {

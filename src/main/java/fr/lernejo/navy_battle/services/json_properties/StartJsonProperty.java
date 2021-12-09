@@ -2,6 +2,9 @@ package fr.lernejo.navy_battle.services.json_properties;
 
 import com.google.gson.annotations.Expose;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Classe contenant les attributs échangés entre les deux joueurs au moment de l'initialisation de la partie
  */
