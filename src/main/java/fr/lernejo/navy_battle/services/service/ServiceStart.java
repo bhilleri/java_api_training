@@ -27,7 +27,7 @@ public class ServiceStart implements IService {
         }
         else
         {
-            body = BadRequestError;
+            body = getBody(String.valueOf(exchange.getLocalAddress().getPort()));
             exchange.sendResponseHeaders(400, body.length());
         }
         try (OutputStream os = exchange.getResponseBody()) { // (1)
