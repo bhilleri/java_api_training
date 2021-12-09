@@ -23,7 +23,7 @@ public class ServiceStart implements IService {
         if (TestRequest(exchange))
         {
             body = getBody(String.valueOf(exchange.getLocalAddress().getPort()));
-            exchange.sendResponseHeaders(200, body.length());
+            exchange.sendResponseHeaders(202, body.length());
         }
         else
         {

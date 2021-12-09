@@ -29,16 +29,16 @@ public class Launcher {
             server.startServer();
             if( args.length >= 2)
             {
-                final String ServerPort= args[1];
+                final String address= args[1];
                 final Gson gson = new Gson();
-                final String body = gson.toJson(new StartJsonSchema(new StartJsonProperty(
+                final String body = gson.toJson(new StartJsonProperty(
                     "1",
                     "http://" + InetAddress.getLocalHost().getHostAddress()+ ":" + myPort,
                     "hello"
-                )));
+                ));
                 System.out.println("Send : " + body);
                 final HttpRequest requetePost = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:"+ ServerPort + "/api/game/start"))
+                    .uri(URI.create(address+ "/api/game/start"))
                     .setHeader("Accept", "application/json")
                     .setHeader("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(body))
