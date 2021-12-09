@@ -18,6 +18,6 @@ public final class ServicePing implements IService {
         }
     }
     public String getBody(){
-        return "hello";
+        return "OK";
     }
 }

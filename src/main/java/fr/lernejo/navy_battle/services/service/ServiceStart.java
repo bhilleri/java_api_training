@@ -16,8 +16,7 @@ import java.net.UnknownHostException;
  * Service permettant aux deux joueurs de se connaître
  */
 public class ServiceStart implements IService {
-    private static InetSocketAddress inetSocketAddress;
-    public String BadRequestError = "error 400 : Bad request";
+    final public String BadRequestError = "error 400 : Bad request";
     @Override
     public void handler(final HttpExchange exchange) throws IOException {
         final String body;
