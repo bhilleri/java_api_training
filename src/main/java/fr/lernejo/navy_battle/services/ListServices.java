@@ -1,6 +1,7 @@
 package fr.lernejo.navy_battle.services;
 
 import fr.lernejo.navy_battle.IController;
+import fr.lernejo.navy_battle.services.service.ServiceFire;
 import fr.lernejo.navy_battle.services.service.ServicePing;
 import fr.lernejo.navy_battle.services.service.ServiceStart;
 
@@ -20,6 +21,7 @@ public final class ListServices {
         this.listService = new HashMap<>();
         this.listService.put("/ping", new ServicePing());
         this.listService.put("/api/game/start", new ServiceStart(controller));
+        this.listService.put("/api/game/fire", new ServiceFire(controller));
     }
 
     /**
