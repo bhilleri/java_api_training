@@ -2,7 +2,7 @@ package fr.lernejo.navy_battle.services.tools;
 
 import com.google.gson.Gson;
 import fr.lernejo.navy_battle.services.json_properties.StartJsonProperty;
-import fr.lernejo.navy_battle.services.json_properties.StartJsonSchema;
+
 import java.io.IOException;
 import java.io.InputStream;
 

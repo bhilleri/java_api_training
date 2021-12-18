@@ -8,6 +8,7 @@ import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import fr.lernejo.navy_battle.IController;
 import fr.lernejo.navy_battle.services.IService;
 import fr.lernejo.navy_battle.services.ListServices;
 
@@ -17,13 +18,13 @@ import fr.lernejo.navy_battle.services.ListServices;
 public final class ServerNavyBattleHttp implements IServerNavyBattle {
     private final HttpServer server;
 
-    public ServerNavyBattleHttp(int port) throws IOException {
+    public ServerNavyBattleHttp(int port, IController controller) throws IOException {
         InetSocketAddress inetSocketAddress = new InetSocketAddress(port);
         server = HttpServer.
             create(inetSocketAddress, 0);
 
         server.setExecutor(Executors.newFixedThreadPool(1));
-        ListServices serviceList = new ListServices();
+        ListServices serviceList = new ListServices(controller);
         serviceList.getAllService().forEach((String url, IService service) ->{
             server.createContext(url, service::handler);
         });
@@ -39,7 +40,7 @@ public final class ServerNavyBattleHttp implements IServerNavyBattle {
     }
 
     @Override
-    public InetSocketAddress getAdress() {
+    public InetSocketAddress getAddress() {
         return server.getAddress();
     }
 }

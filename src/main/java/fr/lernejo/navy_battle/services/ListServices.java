@@ -1,5 +1,6 @@
 package fr.lernejo.navy_battle.services;
 
+import fr.lernejo.navy_battle.IController;
 import fr.lernejo.navy_battle.services.service.ServicePing;
 import fr.lernejo.navy_battle.services.service.ServiceStart;
 
@@ -12,14 +13,13 @@ import java.util.Map;
  */
 public final class ListServices {
     final private Map<String, IService> listService;
-
     /**
      * Gènere la liste des services accessibles. L'ajout ou la suppression d'un service doit être répercuté dans les tests unitaires
      */
-    public ListServices(){
+    public ListServices(IController controller){
         this.listService = new HashMap<>();
         this.listService.put("/ping", new ServicePing());
-        this.listService.put("/api/game/start", new ServiceStart());
+        this.listService.put("/api/game/start", new ServiceStart(controller));
     }
 
     /**

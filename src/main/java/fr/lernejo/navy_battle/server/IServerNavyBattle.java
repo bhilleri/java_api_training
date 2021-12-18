@@ -18,5 +18,5 @@ public interface IServerNavyBattle  {
      *
      * @return L'adresse du serveur
      */
-    public InetSocketAddress getAdress();
+    public InetSocketAddress getAddress();
 }
