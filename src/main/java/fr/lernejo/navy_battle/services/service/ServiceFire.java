@@ -2,16 +2,13 @@ package fr.lernejo.navy_battle.services.service;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
-import fr.lernejo.navy_battle.Consequence;
+import fr.lernejo.navy_battle.enumeration.Consequence;
 import fr.lernejo.navy_battle.IController;
 import fr.lernejo.navy_battle.services.IService;
 import fr.lernejo.navy_battle.services.json_properties.FirerResponseJsonProperty;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ServiceFire implements IService {
     final IController controller;

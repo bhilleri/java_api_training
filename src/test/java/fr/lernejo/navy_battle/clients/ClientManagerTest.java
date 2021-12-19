@@ -44,14 +44,6 @@ class ClientManagerTest {
         listClient.put("ClientFire", clientFire);
     }
 
-    @Test
-    void getClientFire() {
-        ClientManager clientManager = new ClientManager(controller, listClient);
-        IClientFire clientFire = clientManager.getClientFire();
-        Assertions.assertNotNull(clientManager);
-        Assertions.assertInstanceOf(IClientFire.class, clientFire);
-
-    }
 
     @Test
     void connectSucceed() {

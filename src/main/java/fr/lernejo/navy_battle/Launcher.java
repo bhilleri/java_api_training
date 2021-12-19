@@ -24,6 +24,7 @@ public class Launcher {
             final String uri = args[1];
             final IInitConnectPlayer initWaitingPlayer = new InitConnectPlayer();
             initWaitingPlayer.launch(port, uri);
+
         }
     }
 }

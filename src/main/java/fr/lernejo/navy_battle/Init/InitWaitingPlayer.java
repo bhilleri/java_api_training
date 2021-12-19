@@ -12,6 +12,8 @@ public class InitWaitingPlayer implements IInitWaitingPlayer{
         try {
             final IController controller = new Controller(port);
             controller.StartServer();
+            controller.startGame();
+            controller.getGame().Fire();
             return true;
         } catch (IOException e) {
             e.printStackTrace();

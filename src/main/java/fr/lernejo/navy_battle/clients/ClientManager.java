@@ -2,6 +2,10 @@ package fr.lernejo.navy_battle.clients;
 
 import fr.lernejo.navy_battle.IController;
 import fr.lernejo.navy_battle.clients.client.*;
+import fr.lernejo.navy_battle.enumeration.Consequence;
+import fr.lernejo.navy_battle.game.point.IPoint;
+import fr.lernejo.navy_battle.game.point.Point;
+
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,8 +36,8 @@ public class ClientManager implements IClientManager {
         A = 2;
     }
     @Override
-    public IClientFire getClientFire() {
-        return this.clientFire;
+    public Consequence Fire(IPoint cell) throws UnknownHostException {
+        return this.clientFire.Connect(this.address.get(0), cell);
     }
 
     @Override

@@ -1,14 +1,10 @@
 package fr.lernejo.navy_battle;
 
-import fr.lernejo.navy_battle.Game.Game;
-import fr.lernejo.navy_battle.clients.ClientManager;
-import fr.lernejo.navy_battle.clients.ListClients;
+import fr.lernejo.navy_battle.game.Game;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {
     private Controller controller1;

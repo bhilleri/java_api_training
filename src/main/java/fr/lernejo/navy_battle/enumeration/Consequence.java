@@ -1,4 +1,4 @@
-package fr.lernejo.navy_battle;
+package fr.lernejo.navy_battle.enumeration;
 
 public enum Consequence {
     miss,
