@@ -43,8 +43,9 @@ public class Controller implements  IController {
 
     @Override
     public void StartGameWithConnexion() throws UnknownHostException {
-        this.getIClientManager().connect();
         startGame();
+        this.getIClientManager().connect();
+
     }
 
     @Override

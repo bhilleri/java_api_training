@@ -31,7 +31,7 @@ public class Game implements  IGame{
     {
         try {
             while(controller.getIClientManager().getAddress().length() == 0){
-                TimeUnit.MILLISECONDS.sleep(50);
+                TimeUnit.MICROSECONDS.sleep(50);
             }
             controller.getIClientManager().Fire(new Point(3,3));
         } catch (UnknownHostException e) {
