@@ -39,6 +39,8 @@ public class ClientFire extends Client implements IClientFire{
     {
         final HttpRequest requetePost = HttpRequest.newBuilder()
             .uri(URI.create(address+ "/api/game/fire?" + "cell=" + cell.toString()))
+            .setHeader("Accept", "application/json")
+            .setHeader("Content-Type", "application/json")
             .build();
         return requetePost;
     }

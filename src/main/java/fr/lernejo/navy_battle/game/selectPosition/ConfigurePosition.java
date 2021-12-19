@@ -7,7 +7,7 @@ import fr.lernejo.navy_battle.game.point.IPoint;
 import java.util.List;
 
 public class ConfigurePosition implements IConfigurePosition {
-    private IPlayer player;
+    final private IPlayer player;
     public ConfigurePosition(IPlayer player)
     {
         this.player = player;
