@@ -1,18 +1,18 @@
 package fr.lernejo.navy_battle.clients.client;
 
-import com.google.gson.Gson;
+
 import fr.lernejo.navy_battle.IController;
 import fr.lernejo.navy_battle.enumeration.Consequence;
 import fr.lernejo.navy_battle.game.point.IPoint;
 import fr.lernejo.navy_battle.services.json_properties.FirerResponseJsonProperty;
-import fr.lernejo.navy_battle.services.json_properties.StartJsonProperty;
-
-import java.net.InetAddress;
+import fr.lernejo.navy_battle.services.tools.DeserializeFireResponseJsonProperty;
 import java.net.URI;
 import java.net.UnknownHostException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClientFire extends Client implements IClientFire{
     public ClientFire(IController controller){
@@ -22,17 +22,20 @@ public class ClientFire extends Client implements IClientFire{
 
     public Consequence Connect(String address, IPoint cell) throws UnknownHostException
     {
-        System.out.println("Fire on " + cell.toString());
+        List<Consequence> consequenceList =new ArrayList<>();
         final int port = this.controller.getServer().getAddress().getPort();
         final HttpRequest requetePost = RequestBuilder(address, cell);
         final HttpClient client = HttpClient.newHttpClient();
-
         client.sendAsync(requetePost, HttpResponse.BodyHandlers.ofString())
             .thenAccept((b) ->{
-                System.out.println("Receive : " + b.body());
+                final DeserializeFireResponseJsonProperty deserializeFireResponseJsonProperty = new DeserializeFireResponseJsonProperty();
+                FirerResponseJsonProperty responseJsonProperty = deserializeFireResponseJsonProperty.deserializationFromString(b.body());
+                consequenceList.add(responseJsonProperty.consequence);
+                if(responseJsonProperty.shipLeft == false)
+                    this.controller.getGame().SetVictory();
             })
             .join();
-        return Consequence.miss;
+        return consequenceList.get(0);
     }
 
     public HttpRequest RequestBuilder(String address, IPoint cell)

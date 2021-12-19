@@ -23,20 +23,18 @@ public class ServiceStart implements IService {
     @Override
     public void handler(final HttpExchange exchange) throws IOException {
         final String body;
-        if (TestRequest(exchange))
-        {
+        if (TestRequest(exchange)) {
             body = getBody(String.valueOf(exchange.getLocalAddress().getPort()));
             exchange.sendResponseHeaders(202, body.length());
-        }
-        else
+        } else
         {
             body = getBody(String.valueOf(exchange.getLocalAddress().getPort()));
             exchange.sendResponseHeaders(400, body.length());
         }
         try (OutputStream os = exchange.getResponseBody()) { // (1)
-                System.out.println("send : " + body);
                 os.write(body.getBytes());
         }
+        this.controller.getGame().SetTrueReadyTOShoot();
     }
 
     /**

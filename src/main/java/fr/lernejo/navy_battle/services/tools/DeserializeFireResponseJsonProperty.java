@@ -13,4 +13,9 @@ public class DeserializeFireResponseJsonProperty {
         Gson gson = new Gson();
         return gson.fromJson(readRequest.read(requestBody), FirerResponseJsonProperty.class);
     }
+    public FirerResponseJsonProperty deserializationFromString(String requestBody) {
+        ReadRequest readRequest = new ReadRequest();
+        Gson gson = new Gson();
+        return gson.fromJson((requestBody), FirerResponseJsonProperty.class);
+    }
 }

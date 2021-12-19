@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import fr.lernejo.navy_battle.Controller;
 import fr.lernejo.navy_battle.clients.ClientManager;
+import fr.lernejo.navy_battle.game.Game;
 import fr.lernejo.navy_battle.services.json_properties.StartJsonProperty;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,6 +61,8 @@ class ServiceStartTest {
                 return new ByteArrayOutputStream(body.length());
             };
             when(httpExchange.getResponseBody()).thenAnswer(outputAnswer);
+            when(controller.getGame()).thenReturn(game);
+            doNothing().when(game).SetTrueReadyTOShoot();
             serviceStart.handler(httpExchange);
         }catch (IOException e)
         {
@@ -67,6 +70,8 @@ class ServiceStartTest {
         }
     }
 
+    @Mock
+    Game game = mock(Game.class);
     @Test
     void handlerFail() {
         try {
@@ -90,6 +95,8 @@ class ServiceStartTest {
                 return new ByteArrayOutputStream(body.length());
             };
             when(httpExchange.getResponseBody()).thenAnswer(outputAnswer);
+            when(controller.getGame()).thenReturn(game);
+            doNothing().when(game).SetTrueReadyTOShoot();
             serviceStart.handler(httpExchange);
         }catch (IOException e)
         {

@@ -1,17 +1,16 @@
-package fr.lernejo.navy_battle.game.boat;
+package fr.lernejo.navy_battle.game.ship;
 
-import fr.lernejo.navy_battle.IController;
 import fr.lernejo.navy_battle.enumeration.Consequence;
 import fr.lernejo.navy_battle.game.point.IPoint;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Boat implements IBoat {
+public class Ship implements IShip {
     private final int size;
     private final String name;
     private final List<IPoint> pointList;
-    public Boat(String name, int size){
+    public Ship(String name, int size){
         this.name = name;
         this.size = size;
         pointList = new ArrayList<>();
@@ -52,4 +51,11 @@ public class Boat implements IBoat {
 
     @Override
     public int GetSize() {return this.size;}
+
+    @Override
+    public boolean IsDestroy() {
+        if(this.pointList.size() <=0)
+            return true;
+        return false;
+    }
 }

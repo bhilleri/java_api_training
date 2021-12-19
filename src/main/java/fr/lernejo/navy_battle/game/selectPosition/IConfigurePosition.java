@@ -1,9 +1,9 @@
 package fr.lernejo.navy_battle.game.selectPosition;
 
-import fr.lernejo.navy_battle.game.boat.IBoat;
+import fr.lernejo.navy_battle.game.ship.IShip;
 
 import java.util.List;
 
 public interface IConfigurePosition {
-    public void PositionAllBoat(List<IBoat> boatList);
+    public void PositionAllBoat(List<IShip> boatList);
 }

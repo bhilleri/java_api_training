@@ -11,6 +11,7 @@ public interface IController {
     public IGame getGame();
     public IServerNavyBattle getServer();
     public void StartGameWithConnexion() throws UnknownHostException;
-    public void startGame();
+    public void StartGameWithoutConnexion() throws InterruptedException, UnknownHostException;
+    public void startGame() throws UnknownHostException;
     public void StartServer();
 }

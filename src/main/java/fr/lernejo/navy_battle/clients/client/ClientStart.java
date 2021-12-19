@@ -21,12 +21,12 @@ public class ClientStart extends Client implements IClientStart{
     {
         final int port = this.controller.getServer().getAddress().getPort();
         final String body = BodyBuilder(port);
-        System.out.println("Send : " + body);
+        //System.out.println("Send : " + body);
         final HttpRequest requetePost = RequestBuilder(address, body);
         final HttpClient client = HttpClient.newHttpClient();
         client.sendAsync(requetePost, HttpResponse.BodyHandlers.ofString())
             .thenAccept((b) ->{
-                System.out.println("Receive : " + b.body());
+                //System.out.println("Receive : " + b.body());
             })
             .join();
         return true;

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import fr.lernejo.navy_battle.enumeration.Consequence;
 import fr.lernejo.navy_battle.IController;
+import fr.lernejo.navy_battle.game.point.Point;
 import fr.lernejo.navy_battle.services.IService;
 import fr.lernejo.navy_battle.services.json_properties.FirerResponseJsonProperty;
 
@@ -26,9 +27,10 @@ public class ServiceFire implements IService {
             exchange.sendResponseHeaders(400, body.length());
         }
         try (OutputStream os = exchange.getResponseBody()) { // (1)
-            System.out.println("send : " + body);
+            //System.out.println("send : " + body);
             os.write(body.getBytes());
         }
+        controller.getGame().SetTrueReadyTOShoot();
     }
     public Consequence ReadRequest(HttpExchange exchange){
         String cell =  exchange.getRequestURI().getQuery().split("=")[1];
@@ -37,7 +39,7 @@ public class ServiceFire implements IService {
         if(exchange.getRequestMethod().equals("GET"))
             if( column >=0 && column <= 10)
                 if( row >=0 && row <= 10)
-                    return Consequence.hint;
+                    return controller.getGame().receiveShoot(new Point(column, row));
         return Consequence.error;
     }
     public String getBody(Consequence consequence)
@@ -55,12 +57,7 @@ public class ServiceFire implements IService {
     public String FireResponseJsonPropertyBuilder(Consequence consequence){
         final Gson gson = new Gson();
         final FirerResponseJsonProperty firerResponseJsonProperty;
-        if(consequence.equals(Consequence.miss)) {
-            firerResponseJsonProperty = new FirerResponseJsonProperty(consequence, false);
-        }
-        else{
-            firerResponseJsonProperty = new FirerResponseJsonProperty(consequence, true);
-        }
+            firerResponseJsonProperty = new FirerResponseJsonProperty(consequence, !this.controller.getGame().GetIfLost());
         return gson.toJson(firerResponseJsonProperty);
     }
 }

@@ -1,6 +1,6 @@
 package fr.lernejo.navy_battle.game.selectPosition;
 
-import fr.lernejo.navy_battle.game.boat.IBoat;
+import fr.lernejo.navy_battle.game.ship.IShip;
 import fr.lernejo.navy_battle.game.player.IPlayer;
 import fr.lernejo.navy_battle.game.point.IPoint;
 
@@ -13,8 +13,8 @@ public class ConfigurePosition implements IConfigurePosition {
         this.player = player;
     }
     @Override
-    public void PositionAllBoat(final List<IBoat> boatList) {
-        for (IBoat boat : boatList) {
+    public void PositionAllBoat(final List<IShip> boatList) {
+        for (IShip boat : boatList) {
             while(true)
             {
                 final List<IPoint> listPoint = player.PositionABoat(boat.GetSize());
@@ -27,9 +27,9 @@ public class ConfigurePosition implements IConfigurePosition {
             }
         }
     }
-    public boolean ValidPosition(final List<IBoat> boatList, final List<IPoint> pointList)
+    public boolean ValidPosition(final List<IShip> boatList, final List<IPoint> pointList)
     {
-        for (IBoat boat : boatList) {
+        for (IShip boat : boatList) {
             for (IPoint point : pointList) {
                 if(boat.GetPosition().contains(point))
                 {

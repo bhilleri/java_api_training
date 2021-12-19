@@ -1,13 +1,11 @@
-package fr.lernejo.navy_battle.game.boat;
+package fr.lernejo.navy_battle.game.ship;
 
-import fr.lernejo.navy_battle.Controller;
 import fr.lernejo.navy_battle.enumeration.Consequence;
 import fr.lernejo.navy_battle.game.point.IPoint;
 import fr.lernejo.navy_battle.game.point.Point;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +16,7 @@ class BoatTest {
 
     private final String name = "Aircraft carrier";
     private final int size = 5;
-    private Boat boat;
+    private Ship boat;
     private List<IPoint> pointList;
     private final IPoint point1 = new Point(4,6);
     private final IPoint point2 = new Point(5,6);
@@ -28,7 +26,7 @@ class BoatTest {
     @BeforeEach
     public void initialize()
     {
-        boat = new Boat(name, size);
+        boat = new Ship(name, size);
         this.pointList = new ArrayList<>();
         this.pointList.add(point1);
         this.pointList.add(point2);

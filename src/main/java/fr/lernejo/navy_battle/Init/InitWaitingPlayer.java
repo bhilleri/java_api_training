@@ -5,6 +5,7 @@ import fr.lernejo.navy_battle.IController;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class InitWaitingPlayer implements IInitWaitingPlayer{
     @Override
@@ -12,10 +13,9 @@ public class InitWaitingPlayer implements IInitWaitingPlayer{
         try {
             final IController controller = new Controller(port);
             controller.StartServer();
-            controller.startGame();
-            controller.getGame().Fire();
+            controller.StartGameWithoutConnexion();
             return true;
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
             return false;
         }
