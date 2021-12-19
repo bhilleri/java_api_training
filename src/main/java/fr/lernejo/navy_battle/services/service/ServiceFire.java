@@ -18,7 +18,7 @@ public class ServiceFire implements IService {
     public void handler(HttpExchange exchange) throws IOException {
         final Consequence consequence = ReadRequest(exchange);
         final String body =getBody(consequence);
-        if(consequence.equals(Consequence.error))
+        if(!consequence.equals(Consequence.error))
         {
             exchange.sendResponseHeaders(202, body.length());
         }
