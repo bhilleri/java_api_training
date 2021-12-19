@@ -8,7 +8,6 @@ import fr.lernejo.navy_battle.server.IServerNavyBattle;
 import fr.lernejo.navy_battle.server.ServerNavyBattleHttp;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.concurrent.TimeUnit;
 
 public class Controller implements  IController {
     private final IServerNavyBattle server;

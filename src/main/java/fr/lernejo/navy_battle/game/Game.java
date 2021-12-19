@@ -41,7 +41,7 @@ public class Game implements  IGame{
     {
         try {
             while(controller.getIClientManager().getAddress().length() == 0){
-                TimeUnit.MICROSECONDS.sleep(50);
+                TimeUnit.MICROSECONDS.sleep(5);
             }
             controller.getIClientManager().Fire(new Point(3,3));
         } catch (UnknownHostException e) {
@@ -71,7 +71,7 @@ public class Game implements  IGame{
         while (this.GetIfLost() == false && victoire.get(0) == false) {
             try {
                 while (readyToShoot.get(0) == false) {
-                    TimeUnit.MICROSECONDS.sleep(50);
+                    TimeUnit.MICROSECONDS.sleep(5);
                 }
                 this.readyToShoot.set(0, false);
                 final IPoint point = player.Shoot();

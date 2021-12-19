@@ -31,19 +31,19 @@ public class ComputerPlayer implements IPlayer {
     @Override
     public void InformEnemySHoot(IPoint point, Consequence consequence)
     {
-        System.out.println(color.Red() + "L'adversaire a tiré en : " + point.toString() + " conséquance :" + consequence.toString() + color.Reset());
+        //System.out.println(color.Red() + "L'adversaire a tiré en : " + point.toString() + " conséquance :" + consequence.toString() + color.Reset());
     }
 
     @Override
     public void InformShipLost(List<String> shipNameList) {
         for (String shipName : shipNameList) {
-            System.out.println(color.Purple() + "L'adversaire à coulé :" + shipName.toString() + color.Reset());
+            //System.out.println(color.Purple() + "L'adversaire à coulé :" + shipName.toString() + color.Reset());
         }
     }
 
     @Override
     public void InformConsequenceOfShoot(IPoint point, Consequence consequence) {
-        System.out.println(color.Green() + "Tir sur : " + point.toString() + " : " + consequence.toString());
+        //System.out.println(color.Green() + "Tir sur : " + point.toString() + " : " + consequence.toString());
     }
 
     @Override
