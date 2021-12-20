@@ -93,4 +93,7 @@ public class Game implements  IGame{
         this.victoire.set(0, true);
         player.InformVictory();
     }
+    public void SetDefeat(){
+        player.InformDefeat();
+    }
 }

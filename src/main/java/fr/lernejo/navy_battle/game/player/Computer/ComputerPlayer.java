@@ -47,7 +47,16 @@ public class ComputerPlayer implements IPlayer {
     }
 
     @Override
-    public void InformVictory() {
-        System.out.println("\n" + color.Green() + "Victoire");
+    public String InformVictory() {
+        final String information = "\n" + color.Green() + "Victoire" + color.Reset();
+        System.out.println(information);
+        return  information;
+    }
+
+    @Override
+    public String InformDefeat() {
+        final String information ="\n"+color.Red() + "Défaite" + color.Reset();
+        System.out.println(information);
+        return information;
     }
 }

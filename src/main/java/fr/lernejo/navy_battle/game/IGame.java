@@ -14,4 +14,5 @@ public interface IGame {
     public void Start() throws UnknownHostException;
     public void SetTrueReadyTOShoot();
     public void SetVictory();
+    public void SetDefeat();
 }

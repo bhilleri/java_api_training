@@ -57,7 +57,10 @@ public class ServiceFire implements IService {
     public String FireResponseJsonPropertyBuilder(Consequence consequence){
         final Gson gson = new Gson();
         final FirerResponseJsonProperty firerResponseJsonProperty;
-            firerResponseJsonProperty = new FirerResponseJsonProperty(consequence, !this.controller.getGame().GetIfLost());
+        firerResponseJsonProperty = new FirerResponseJsonProperty(consequence, !this.controller.getGame().GetIfLost());
+        if(this.controller.getGame().GetIfLost()) {
+            controller.getGame().SetDefeat();
+        }
         return gson.toJson(firerResponseJsonProperty);
     }
 }

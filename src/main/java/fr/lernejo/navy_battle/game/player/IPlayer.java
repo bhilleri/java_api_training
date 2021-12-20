@@ -11,5 +11,6 @@ public interface IPlayer {
     public void InformEnemySHoot(IPoint point, Consequence consequence);
     public void InformShipLost(List<String> shipName);
     public void InformConsequenceOfShoot(IPoint point, Consequence consequence);
-    public void InformVictory();
+    public String InformVictory();
+    public String InformDefeat();
 }
