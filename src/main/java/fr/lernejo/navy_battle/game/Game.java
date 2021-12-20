@@ -55,10 +55,12 @@ public class Game implements  IGame{
             while (readyToShoot.get(0) == false) {
                 TimeUnit.MICROSECONDS.sleep(2);
             }
-            this.readyToShoot.set(0, false);
-            final IPoint point = player.Shoot();
-            final Consequence consequence= this.controller.getIClientManager().Fire(point);
-            player.InformConsequenceOfShoot(point, consequence);
+            if(this.GetIfLost() == false && victory.get(0) == false) {
+                this.readyToShoot.set(0, false);
+                final IPoint point = player.Shoot();
+                final Consequence consequence = this.controller.getIClientManager().Fire(point);
+                player.InformConsequenceOfShoot(point, consequence);
+            }
         }
     }
 
