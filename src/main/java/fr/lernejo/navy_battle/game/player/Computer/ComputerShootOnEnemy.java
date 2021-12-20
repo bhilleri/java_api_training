@@ -18,12 +18,12 @@ public class ComputerShootOnEnemy implements IComputerShootOnEnemy {
     public IPoint shoot() {
         return nexPoint();
     }
-    public IPoint nexPoint(){
+    private IPoint nexPoint(){
         final Constant constant = new Constant();
         constant.GetSizeOfBoard();
         if(lastShoot.get('x')+1 >= constant.GetSizeOfBoard()) {
             this.lastShoot.put('x',0);
-            if(this.lastShoot.get('y')+1 > constant.GetSizeOfBoard()) {
+            if(this.lastShoot.get('y')+1 >= constant.GetSizeOfBoard()) {
                 this.lastShoot.put('y', 0);
             } else{
                 this.lastShoot.put('y', this.lastShoot.get('y')+1);

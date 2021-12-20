@@ -8,9 +8,10 @@ import java.util.List;
 public interface IPlayer {
     public List<IPoint> PositionABoat(int size);
     public IPoint Shoot();
-    public void InformEnemySHoot(IPoint point, Consequence consequence);
-    public void InformShipLost(List<String> shipName);
-    public void InformConsequenceOfShoot(IPoint point, Consequence consequence);
+    public String InformEnemySHoot(IPoint point, Consequence consequence);
+    public List<String> InformShipLost(List<String> shipName);
+    public String InformConsequenceOfShoot(IPoint point, Consequence consequence);
     public String InformVictory();
     public String InformDefeat();
+    public String InformPlacement(String name, List<IPoint> pointList);
 }

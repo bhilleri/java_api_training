@@ -12,7 +12,7 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 
 
-class BoatTest {
+class ShipTest {
 
     private final String name = "Aircraft carrier";
     private final int size = 5;
@@ -137,4 +137,18 @@ class BoatTest {
         int sizeOfBoat= boat.GetSize();
         Assertions.assertEquals(size, sizeOfBoat);
     }
+
+    @Test
+    void IsDestroyTrue()
+    {
+        Ship destroyedShip = new Ship("destroyed", 2);
+        Assertions.assertTrue(destroyedShip.IsDestroy());
+    }
+    @Test
+    void IsDestroyFalse()
+    {
+        boat.SetPosition(pointList);
+        Assertions.assertFalse(boat.IsDestroy());
+    }
+
 }

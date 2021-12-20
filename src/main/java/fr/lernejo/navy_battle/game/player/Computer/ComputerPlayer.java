@@ -6,6 +6,7 @@ import fr.lernejo.navy_battle.enumeration.Consequence;
 import fr.lernejo.navy_battle.game.player.IPlayer;
 import fr.lernejo.navy_battle.game.point.IPoint;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ComputerPlayer implements IPlayer {
@@ -25,25 +26,32 @@ public class ComputerPlayer implements IPlayer {
 
     @Override
     public IPoint Shoot() {
-        IPoint point = this.computerShootOnEnemy.shoot();
+        final IPoint point = this.computerShootOnEnemy.shoot();
         return point;
     }
     @Override
-    public void InformEnemySHoot(IPoint point, Consequence consequence)
+    public String InformEnemySHoot(IPoint point, Consequence consequence)
     {
-        //System.out.println(color.Red() + "L'adversaire a tiré en : " + point.toString() + " conséquance :" + consequence.toString() + color.Reset());
+        final String information = color.Red() + "L'adversaire a tiré en : " + point.toString() + " conséquance :" + consequence.toString() + color.Reset();
+        //System.out.println(information);
+        return information;
     }
 
     @Override
-    public void InformShipLost(List<String> shipNameList) {
+    public List<String> InformShipLost(List<String> shipNameList) {
+        final List<String> information= new ArrayList<>();
         for (String shipName : shipNameList) {
-            //System.out.println(color.Purple() + "L'adversaire à coulé :" + shipName.toString() + color.Reset());
+            information.add(color.Purple() + "L'adversaire à coulé : " + shipName.toString() + color.Reset());
+            System.out.println(information.get(information.size()-1));
         }
+        return information;
     }
 
     @Override
-    public void InformConsequenceOfShoot(IPoint point, Consequence consequence) {
-        //System.out.println(color.Green() + "Tir sur : " + point.toString() + " : " + consequence.toString());
+    public String InformConsequenceOfShoot(IPoint point, Consequence consequence) {
+        final String information = color.Green() + "Tir sur : " + point.toString() + " : " + consequence.toString() + color.Reset();
+        //System.out.println(information);
+        return information;
     }
 
     @Override
@@ -59,4 +67,12 @@ public class ComputerPlayer implements IPlayer {
         System.out.println(information);
         return information;
     }
+
+    @Override
+    public String InformPlacement(String name, List<IPoint> pointList) {
+        String information = "Position du " + name + " : " + pointList.toString();
+        System.out.println(information);
+        return information;
+    }
+
 }

@@ -23,10 +23,11 @@ public class Board implements  IBoard {
         IShipBuilder boatBuilder = new ShipBuilder();
         this.shipList = boatBuilder.GetBoat();
         this.player = player;
-        this.shootFromEnemy = new ShootFromEnemy(this, this.controller, this.shipList, this.player);
+        this.shootFromEnemy = new ShootFromEnemy(this.shipList);
     }
 
-    public void InitializeBoats(){
+    @Override
+    public void InitializeShip(){
         final IConfigurePosition configurePosition = new ConfigurePosition(player);
         configurePosition.PositionAllBoat(this.shipList);
     }
@@ -46,10 +47,4 @@ public class Board implements  IBoard {
             return true;
         return false;
     }
-
-    public Consequence Shoot(IPoint targetedPoint)
-    {
-        return Consequence.miss;
-    }
-
 }

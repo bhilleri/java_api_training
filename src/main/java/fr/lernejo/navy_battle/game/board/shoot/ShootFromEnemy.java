@@ -11,12 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShootFromEnemy implements IShootFromEnemy {
-    private final IBoard board;
-    private final IController controller;
     private final List<IShip> shipList;
-    public ShootFromEnemy(IBoard board, IController controller, List<IShip> shipList, IPlayer player){
-        this.board = board;
-        this.controller = controller;
+    public ShootFromEnemy(List<IShip> shipList){
         this.shipList = shipList;
     }
     @Override

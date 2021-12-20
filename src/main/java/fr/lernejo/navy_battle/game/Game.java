@@ -1,15 +1,13 @@
 package fr.lernejo.navy_battle.game;
 
-import fr.lernejo.navy_battle.Controller;
 import fr.lernejo.navy_battle.IController;
 import fr.lernejo.navy_battle.enumeration.Consequence;
+import fr.lernejo.navy_battle.enumeration.Victory;
 import fr.lernejo.navy_battle.game.board.Board;
 import fr.lernejo.navy_battle.game.board.IBoard;
 import fr.lernejo.navy_battle.game.player.Computer.ComputerPlayer;
 import fr.lernejo.navy_battle.game.player.IPlayer;
 import fr.lernejo.navy_battle.game.point.IPoint;
-import fr.lernejo.navy_battle.game.point.Point;
-
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,35 +18,20 @@ public class Game implements  IGame{
     private final List<Boolean> readyToShoot;
     private final IController controller;
     private final IBoard board;
-    private final List<Boolean>victoire;
-    public Game(IController controller, boolean readyToShoot){
-        this.player = new ComputerPlayer();
+    private final List<Boolean> victory;
+    public Game(IController controller, boolean readyToShoot, IPlayer player){
+        this.player = player;
         this.controller = controller;
         board = new Board(controller, player);
         this.readyToShoot = new ArrayList<>();
         this.readyToShoot.add(readyToShoot);
-        this.victoire = new ArrayList<>();
-        this.victoire.add(false);
+        this.victory = new ArrayList<>();
+        this.victory.add(false);
     }
 
     @Override
     public void Initialize() {
-        board.InitializeBoats();
-
-    }
-    @Override
-    public void Shoot()
-    {
-        try {
-            while(controller.getIClientManager().getAddress().length() == 0){
-                TimeUnit.MICROSECONDS.sleep(2);
-            }
-            controller.getIClientManager().Fire(new Point(3,3));
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        board.InitializeShip();
     }
 
     @Override
@@ -67,19 +50,15 @@ public class Game implements  IGame{
     }
 
     @Override
-    public void Start() throws UnknownHostException {
-        while (this.GetIfLost() == false && victoire.get(0) == false) {
-            try {
-                while (readyToShoot.get(0) == false) {
-                    TimeUnit.MICROSECONDS.sleep(2);
-                }
-                this.readyToShoot.set(0, false);
-                final IPoint point = player.Shoot();
-                final Consequence consequence= this.controller.getIClientManager().Fire(point);
-                player.InformConsequenceOfShoot(point, consequence);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    public void Start() throws UnknownHostException, InterruptedException {
+        while (this.GetIfLost() == false && victory.get(0) == false) {
+            while (readyToShoot.get(0) == false) {
+                TimeUnit.MICROSECONDS.sleep(2);
             }
+            this.readyToShoot.set(0, false);
+            final IPoint point = player.Shoot();
+            final Consequence consequence= this.controller.getIClientManager().Fire(point);
+            player.InformConsequenceOfShoot(point, consequence);
         }
     }
 
@@ -90,10 +69,19 @@ public class Game implements  IGame{
 
     @Override
     public void SetVictory() {
-        this.victoire.set(0, true);
+        this.victory.set(0, true);
         player.InformVictory();
     }
+    @Override
     public void SetDefeat(){
         player.InformDefeat();
+    }
+    @Override
+    public Victory GetVictory(){
+        if(this.GetIfLost())
+            return Victory.defeat;
+        if(this.victory.get(0))
+            return  Victory.victory;
+        return Victory.undetermined;
     }
 }

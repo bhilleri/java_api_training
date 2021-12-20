@@ -4,7 +4,7 @@ import fr.lernejo.navy_battle.enumeration.Consequence;
 import fr.lernejo.navy_battle.game.point.IPoint;
 
 public interface IBoard {
-    public void InitializeBoats();
+    public void InitializeShip();
     public Consequence EnemyShoot(IPoint point);
     public boolean GetIfLost();
 }

@@ -20,14 +20,16 @@ public class ConfigurePosition implements IConfigurePosition {
                 final List<IPoint> listPoint = player.PositionABoat(boat.GetSize());
                 if(ValidPosition(boatList,listPoint))
                 {
-                    boat.SetPosition(listPoint);
-                    System.out.println("position du " + boat.getName() + " : " + boat.GetPosition().toString());
-                    break;
+                    if(boat.SetPosition(listPoint))
+                    {
+                        player.InformPlacement(boat.getName(), boat.GetPosition());
+                        break;
+                    }
                 }
             }
         }
     }
-    public boolean ValidPosition(final List<IShip> boatList, final List<IPoint> pointList)
+    private boolean ValidPosition(final List<IShip> boatList, final List<IPoint> pointList)
     {
         for (IShip boat : boatList) {
             for (IPoint point : pointList) {

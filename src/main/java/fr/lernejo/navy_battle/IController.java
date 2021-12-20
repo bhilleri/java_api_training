@@ -10,8 +10,8 @@ public interface IController {
     public IClientManager getIClientManager();
     public IGame getGame();
     public IServerNavyBattle getServer();
-    public void StartGameWithConnexion() throws UnknownHostException;
+    public void StartGameWithConnexion() throws UnknownHostException, InterruptedException;
     public void StartGameWithoutConnexion() throws InterruptedException, UnknownHostException;
-    public void startGame() throws UnknownHostException;
+    public void startGame() throws UnknownHostException, InterruptedException;
     public void StartServer();
 }

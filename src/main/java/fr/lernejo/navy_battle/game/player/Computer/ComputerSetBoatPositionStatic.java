@@ -6,7 +6,7 @@ import fr.lernejo.navy_battle.game.point.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComputerSerBoatPositionStatic implements IComputerSetBoatPosition{
+public class ComputerSetBoatPositionStatic implements IComputerSetBoatPosition{
     final List<Integer> numbers = new ArrayList<>();
     @Override
     public List<IPoint> PositionABoat(int size) {

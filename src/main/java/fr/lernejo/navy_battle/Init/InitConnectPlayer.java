@@ -13,7 +13,7 @@ public class InitConnectPlayer implements IInitConnectPlayer {
             controller.StartServer();
             controller.StartGameWithConnexion();
             return true;
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
             return false;
         }

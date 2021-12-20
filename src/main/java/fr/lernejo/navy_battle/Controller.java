@@ -4,6 +4,7 @@ import fr.lernejo.navy_battle.clients.ClientManager;
 import fr.lernejo.navy_battle.clients.IClientManager;
 import fr.lernejo.navy_battle.game.IGame;
 import fr.lernejo.navy_battle.clients.ListClients;
+import fr.lernejo.navy_battle.game.player.Computer.ComputerPlayer;
 import fr.lernejo.navy_battle.server.IServerNavyBattle;
 import fr.lernejo.navy_battle.server.ServerNavyBattleHttp;
 import java.io.IOException;
@@ -16,13 +17,13 @@ public class Controller implements  IController {
 
     public Controller(int myPort) throws IOException {
         this.server = new ServerNavyBattleHttp(myPort, this);
-        this.game = new Game(this, false);
+        this.game = new Game(this, false, new ComputerPlayer());
         this.clientManager = new ClientManager(this, (new ListClients(this).getClientList()));
     }
 
     public Controller(int myPort, String address) throws IOException {
         this.server = new ServerNavyBattleHttp(myPort, this);
-        this.game = new Game(this, false);
+        this.game = new Game(this, false, new ComputerPlayer());
         this.clientManager = new ClientManager(this, (new ListClients(this).getClientList()), address);
     }
 
@@ -42,7 +43,7 @@ public class Controller implements  IController {
     }
 
     @Override
-    public void StartGameWithConnexion() throws UnknownHostException {
+    public void StartGameWithConnexion() throws UnknownHostException, InterruptedException {
         game.Initialize();
         this.getIClientManager().connect();
         startGame();
@@ -54,7 +55,7 @@ public class Controller implements  IController {
     }
 
     @Override
-    public void startGame() throws UnknownHostException {
+    public void startGame() throws UnknownHostException, InterruptedException {
         this.game.Start();
     }
 
