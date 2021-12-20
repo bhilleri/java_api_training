@@ -29,6 +29,7 @@ class ServicePingTest {
                 return new ByteArrayOutputStream(body.length());
             };
             when(exchange.getResponseBody()).thenAnswer(outputAnswer);
+            servicePing.handler(exchange);
         }catch (IOException e)
         {
             Assertions.fail(e.toString());

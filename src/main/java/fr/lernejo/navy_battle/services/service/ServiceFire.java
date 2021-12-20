@@ -17,7 +17,7 @@ public class ServiceFire implements IService {
     @Override
     public void handler(HttpExchange exchange) throws IOException {
         final Consequence consequence = ReadRequest(exchange);
-        final String body =getBody(consequence);
+        final String body = getBody(consequence);
         if(!consequence.equals(Consequence.error))
         {
             exchange.sendResponseHeaders(202, body.length());
@@ -33,14 +33,18 @@ public class ServiceFire implements IService {
         controller.getGame().SetTrueReadyTOShoot();
     }
     public Consequence ReadRequest(HttpExchange exchange){
-        String cell =  exchange.getRequestURI().getQuery().split("=")[1];
-        int column = (int) (cell.charAt(0))-65;
-        int row =Integer.valueOf(cell.substring(1))-1;
-        if(exchange.getRequestMethod().equals("GET"))
-            if( column >=0 && column <= 10)
-                if( row >=0 && row <= 10)
-                    return controller.getGame().receiveShoot(new Point(column, row));
-        return Consequence.error;
+        try {
+            String cell = exchange.getRequestURI().getQuery().split("=")[1];
+            int column = (int) (cell.charAt(0)) - 65;
+            int row = Integer.valueOf(cell.substring(1)) - 1;
+            if (exchange.getRequestMethod().equals("GET"))
+                if (column >= 0 && column <= 10)
+                    if (row >= 0 && row <= 10)
+                        return controller.getGame().receiveShoot(new Point(column, row));
+            return Consequence.error;
+        }catch (ArrayIndexOutOfBoundsException | NullPointerException e){
+            return Consequence.error;
+        }
     }
     public String getBody(Consequence consequence)
     {
