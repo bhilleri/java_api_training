@@ -33,7 +33,7 @@ public class ComputerPlayer implements IPlayer {
     public String InformEnemySHoot(IPoint point, Consequence consequence)
     {
         final String information = color.Red() + "L'adversaire a tiré en : " + point.toString() + " conséquance :" + consequence.toString() + color.Reset();
-        //System.out.println(information);
+        System.out.println(information);
         return information;
     }
 
@@ -50,7 +50,7 @@ public class ComputerPlayer implements IPlayer {
     @Override
     public String InformConsequenceOfShoot(IPoint point, Consequence consequence) {
         final String information = color.Green() + "Tir sur : " + point.toString() + " : " + consequence.toString() + color.Reset();
-        //System.out.println(information);
+        System.out.println(information);
         return information;
     }
 

@@ -14,12 +14,22 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Client chargé d'informé l'adversaire d'un tir et reçoit en retour le résultat du tir
+ */
 public class ClientFire extends Client implements IClientFire{
     public ClientFire(IController controller){
         super(controller);
 
     }
 
+    /**
+     * Méthode chargé d'envoyer la requête
+     * @param address adresse du serveur destinataire
+     * @param cell case visée
+     * @return conséquance du tir
+     * @throws UnknownHostException
+     */
     public Consequence Connect(String address, IPoint cell) throws UnknownHostException
     {
         List<Consequence> consequenceList =new ArrayList<>();
@@ -32,12 +42,18 @@ public class ClientFire extends Client implements IClientFire{
                 FirerResponseJsonProperty responseJsonProperty = deserializeFireResponseJsonProperty.deserializationFromString(b.body());
                 consequenceList.add(responseJsonProperty.consequence);
                 if(responseJsonProperty.shipLeft == false)
-                    this.controller.getGame().SetVictory();
+                    this.controller.getGame().SetVictory();     // informe le jeu en cas de victoire
             })
             .join();
         return consequenceList.get(0);
     }
 
+    /**
+     * Configure la requête
+     * @param address
+     * @param cell
+     * @return
+     */
     public HttpRequest RequestBuilder(String address, IPoint cell)
     {
         final HttpRequest requetePost = HttpRequest.newBuilder()
