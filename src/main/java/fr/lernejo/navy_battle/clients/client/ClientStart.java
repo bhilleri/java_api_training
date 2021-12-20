@@ -11,6 +11,9 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * Client chargé d'établir la connection avec l'autre instance
+ */
 public class ClientStart extends Client implements IClientStart{
     public ClientStart(IController controller){
         super(controller);
